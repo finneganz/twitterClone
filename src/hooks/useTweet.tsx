@@ -5,17 +5,17 @@ interface Tweets {
     sentence: string,
 };
 
-const readTweet = (): Tweets | undefined => {
+const readTweets = (): Tweets | undefined => {
     const tweets = localStorage.getItem("tweet");
     return tweets != null ? JSON.parse(tweets) : undefined;
 };
 
-export const useTweet = () => {
+export const useTweets = () => {
     const [tweets, setTweet] = useState<Tweets | undefined>();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setTweet(readTweet());
+        setTweet(readTweets());
         setLoading(false);
     }, []);
 
