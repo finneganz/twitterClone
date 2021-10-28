@@ -40,7 +40,7 @@ const TopPage = () => {
     )
 }
 
-const DynamicTweets = dynamic(
+const DynamicTopPage = dynamic(
     {
         loader: async () => TopPage,
     },
@@ -49,4 +49,4 @@ const DynamicTweets = dynamic(
     }
 );
 
-export default TopPage;
+export default DynamicTopPage;

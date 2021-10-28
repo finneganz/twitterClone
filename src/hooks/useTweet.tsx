@@ -6,21 +6,14 @@ interface Tweets {
 };
 
 const readTweets = (): Tweets | undefined => {
-    const tweets = localStorage.getItem("tweet");
+    const tweets = localStorage.getItem("tweets");
     return tweets != null ? JSON.parse(tweets) : undefined;
 };
 
 export const useTweets = () => {
-    const [tweets, setTweet] = useState<Tweets | undefined>();
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setTweet(readTweets());
-        setLoading(false);
-    }, []);
+    const [tweets, setTweet] = useState<Tweets | undefined>(readTweets());
 
     return {
         tweets,
-        loading,
     };
 };
