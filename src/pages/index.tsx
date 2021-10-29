@@ -6,6 +6,7 @@ import TweetWindow from "../components/tweet";
 
 const TopPage:NextPage = (props) => {
     const { tweets } = useTweets();
+    console.log(tweets);
 
     return (
         <>
@@ -25,7 +26,7 @@ const TopPage:NextPage = (props) => {
                                 <li className="tweetHeader">
                                     <p className="tweetSentence">ツイート内容</p>
                                 </li>
-                                {tweets.map(posts => (
+                                {tweets.data.map(posts => (
                                     <li className="tweetSentence">{ posts.sentence }</li>    
                                 ))}
                             </ul>

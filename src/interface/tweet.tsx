@@ -1,4 +1,6 @@
 export interface Tweets {
-    // id: number,
-    sentence: string,
+    data: [{
+        id:number;
+        sentence:string;
+    }],
 };
