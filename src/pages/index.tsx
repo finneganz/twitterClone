@@ -100,13 +100,25 @@ const TopPage: NextPage<Props> = props => {
           <div className="tweets">
             <ul style={{ listStyle: "none" }}>
               {tweets.data.map((posts, index) => (
-                <li className="tweetSentence" key={index}>
+                <li
+                  className="tweetSentence"
+                  key={index}
+                  style={{
+                    width: "15em",
+                    height: "3.3em"
+                  }}
+                >
                   {posts.id}: {posts.sentence}
                   <Button
                     variant="outlined"
                     value={posts.id}
                     onClick={likeButton}
                     color="secondary"
+                    style={{
+                      position: "relative",
+                      margin: "0 auto",
+                      right: "0"
+                    }}
                   >
                     {posts.like ? (
                       <Favorite></Favorite>
