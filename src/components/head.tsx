@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <div>
             <Head>
-                <title>TwitterClone | </title>
+                <title>TwitterClone</title>
                 <meta name="description" content="TwitterClone" />
             </Head>
             <Link href="/"><h1>TwitterClone</h1></Link>

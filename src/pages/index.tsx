@@ -67,38 +67,36 @@ const TopPage:NextPage<Props> = (props) => {
     return (
         <>
             <Header></Header>
-            {/* <body> */}
-                <div className="tweetBoard">
-                    <textarea className="tweetArea"
-                        placeholder="何か呟いてみましょう"
-                        onChange={ setTweetSentenceFunc }
-                        value={ props.tweetSentence }></textarea>
-                    <button onClick={ tweetButton }>ツイートする</button>
-                </div>
-                <div className="tweetList">
-                <h2>TweetList</h2>
-                    { tweets == null ? (
-                        <div>
-                            <p>ツイートがまだありません。<br />
-                            ツイートをしてみましょう！</p>
-                        </div>
-                    ) : (
-                        <div className="tweets">
-                            <ul>
-                                <li className="tweetHeader">
-                                    <p className="tweetSentence">ツイート内容</p>
-                                </li>
-                                {tweets.data.map((posts, index) => (
-                                    <li className="tweetSentence" key={index}>
-                                        { posts.id }: { posts.sentence }
-                                        <button onClick={ likeButton } value={ posts.id }>{ posts.like ? 'Liked★' : 'Like☆' }</button>
-                                    </li>    
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-            {/* </body> */}
+            <div className="tweetBoard">
+                <textarea className="tweetArea"
+                    placeholder="何か呟いてみましょう"
+                    onChange={ setTweetSentenceFunc }
+                    value={ props.tweetSentence }></textarea>
+                <button onClick={ tweetButton }>ツイートする</button>
+            </div>
+            <div className="tweetList">
+            <h2>TweetList</h2>
+                { tweets == null ? (
+                    <div>
+                        <p>ツイートがまだありません。<br />
+                        ツイートをしてみましょう！</p>
+                    </div>
+                ) : (
+                    <div className="tweets">
+                        <ul>
+                            <li className="tweetHeader">
+                                <p className="tweetSentence">ツイート内容</p>
+                            </li>
+                            {tweets.data.map((posts, index) => (
+                                <li className="tweetSentence" key={index}>
+                                    { posts.id }: { posts.sentence }
+                                    <button onClick={ likeButton } value={ posts.id }>{ posts.like ? 'Liked★' : 'Like☆' }</button>
+                                </li>    
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
             
         </>
     )
