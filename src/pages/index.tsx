@@ -77,7 +77,7 @@ const TopPage: NextPage<Props> = props => {
           onChange={setTweetSentenceFunc}
           value={props.tweetSentence}
           required
-          maxLength={140}
+          inputProps={{ maxLength: 140 }}
           multiline
           minRows={2}
           maxRows={4}
