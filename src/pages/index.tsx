@@ -24,12 +24,14 @@ const TopPage:NextPage = (props) => {
         const newTweet = {
             id: lastNum,
             sentence: tweetSentence,
+            like: false,
         };
         if (typeof tweets == 'undefined') {
             const firstTweet:Tweets = {
                 data : [{
-                    id:lastNum,
-                    sentence:tweetSentence,
+                    id: lastNum,
+                    sentence: tweetSentence,
+                    like: false,
                 }],
             };
             localStorage.setItem("tweets", JSON.stringify(firstTweet));
@@ -44,6 +46,19 @@ const TopPage:NextPage = (props) => {
         }
     }
 
+    const likeButton = (e: any) => {
+        const likeTweetNum = e.target.value;
+        let newTweets:Tweets = {
+            data: tweets.data
+        };
+        newTweets.data.filter(function(item, index) {
+            if (item.id == likeTweetNum) {
+                item.like = true;
+            }
+        });
+        localStorage.setItem("tweets", JSON.stringify(newTweets));
+        setTweet(newTweets);
+    }
 
     return (
         <>
@@ -53,7 +68,7 @@ const TopPage:NextPage = (props) => {
                     <textarea className="tweetArea"
                         placeholder="何か呟いてみましょう"
                         onChange={ setTweetSentenceFunc }
-                        value={props.tweetSentence}></textarea>
+                        value={ props.tweetSentence }></textarea>
                     <button onClick={ tweetButton }>ツイートする</button>
                 </div>
                 <div className="tweetList">
@@ -69,8 +84,11 @@ const TopPage:NextPage = (props) => {
                                 <li className="tweetHeader">
                                     <p className="tweetSentence">ツイート内容</p>
                                 </li>
-                                {tweets.data.map(posts => (
-                                    <li className="tweetSentence">{ posts.id }: { posts.sentence }</li>    
+                                {tweets.data.map((posts, index) => (
+                                    <li className="tweetSentence" key={index}>
+                                        { posts.id }: { posts.sentence }
+                                        <button onClick={ likeButton } value={ posts.id }>{ posts.like ? 'Liked★' : 'Like☆' }</button>
+                                    </li>    
                                 ))}
                             </ul>
                         </div>
