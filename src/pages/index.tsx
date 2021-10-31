@@ -5,7 +5,11 @@ import dynamic from "next/dynamic";
 import { Tweets } from "../interface/tweet";
 import { readTweets } from "../hooks/useTweet";
 
-const TopPage:NextPage = (props) => {
+interface Props {
+    tweetSentence:string,
+};
+
+const TopPage:NextPage<Props> = (props) => {
     const [tweets, setTweet] = useState<Tweets | undefined>(readTweets());
     const [tweetSentence, setTweetSentence] = useState<string>();
     useEffect(() => {
