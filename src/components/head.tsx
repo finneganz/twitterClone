@@ -1,4 +1,5 @@
-import Head from "next/head"
+import Head from "next/head";
+import Link from "next/link";
 
 const Header = () => {
     return (
@@ -7,7 +8,7 @@ const Header = () => {
                 <title>TwitterClone | </title>
                 <meta name="description" content="TwitterClone" />
             </Head>
-            <h1>TwitterClone</h1>
+            <Link href="/"><h1>TwitterClone</h1></Link>
         </div>
     )
 }
