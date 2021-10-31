@@ -1,7 +1,9 @@
 export interface Tweets {
-    data: [{
-        id:number;
-        sentence:string;
-        like:boolean;
-    }],
-};
+  data: [
+    {
+      id: number;
+      sentence: string;
+      like: boolean;
+    }
+  ];
+}
