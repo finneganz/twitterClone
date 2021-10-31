@@ -98,7 +98,7 @@ const TopPage: NextPage<Props> = props => {
           </div>
         ) : (
           <div className="tweets">
-            <ul>
+            <ul style={{ listStyle: "none" }}>
               <li className="tweetHeader">
                 <p className="tweetSentence">ツイート内容</p>
               </li>
