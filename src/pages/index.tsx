@@ -1,9 +1,10 @@
 import { NextPage } from "next";
 import { useState, useEffect } from "react";
-import Header from "../components/head";
+import { Button, ButtonGroup, TextField } from "@material-ui/core";
 import dynamic from "next/dynamic";
 import { Tweets } from "../interface/tweet";
 import { readTweets } from "../hooks/useTweet";
+import { Favorite, FavoriteBorder } from "@material-ui/icons";
 
 interface Props {
   tweetSentence: string;
@@ -12,15 +13,15 @@ interface Props {
 const TopPage: NextPage<Props> = props => {
   const [tweets, setTweet] = useState<Tweets | undefined>(readTweets());
   const [tweetSentence, setTweetSentence] = useState<string>();
-  useEffect(() => {
-    setTweet(tweets);
-  }, [tweets]);
 
   const setTweetSentenceFunc = (e: any) => {
-    setTweetSentence(e.target.value);
+    setTweetSentence(e.currentTarget.value);
   };
 
   const tweetButton = () => {
+    console.log(tweetSentence);
+    if (typeof tweetSentence === "undefined" || tweetSentence === "")
+      return false;
     let lastNum = 1;
     if (typeof tweets != "undefined") {
       lastNum = tweets.data.slice(-1)[0].id + 1;
@@ -53,7 +54,7 @@ const TopPage: NextPage<Props> = props => {
   };
 
   const likeButton = (e: any) => {
-    const likeTweetNum = e.target.value;
+    const likeTweetNum = e.currentTarget.value;
     let newTweets: Tweets = {
       data: tweets.data
     };
@@ -68,17 +69,22 @@ const TopPage: NextPage<Props> = props => {
 
   return (
     <>
-      <Header></Header>
       <div className="tweetBoard">
-        <textarea
+        <TextField
+          type="text"
           className="tweetArea"
           placeholder="何か呟いてみましょう"
           onChange={setTweetSentenceFunc}
           value={props.tweetSentence}
           required
-          maxLength={140}
-        ></textarea>
-        <button onClick={tweetButton}>ツイートする</button>
+          inputProps={{ maxLength: 140 }}
+          multiline
+          minRows={2}
+          maxRows={4}
+        />
+        <Button variant="contained" onClick={tweetButton}>
+          ツイートする
+        </Button>
       </div>
       <div className="tweetList">
         <h2>TweetList</h2>
@@ -92,16 +98,22 @@ const TopPage: NextPage<Props> = props => {
           </div>
         ) : (
           <div className="tweets">
-            <ul>
-              <li className="tweetHeader">
-                <p className="tweetSentence">ツイート内容</p>
-              </li>
+            <ul style={{ listStyle: "none" }}>
               {tweets.data.map((posts, index) => (
                 <li className="tweetSentence" key={index}>
                   {posts.id}: {posts.sentence}
-                  <button onClick={likeButton} value={posts.id}>
-                    {posts.like ? "Liked★" : "Like☆"}
-                  </button>
+                  <Button
+                    variant="outlined"
+                    value={posts.id}
+                    onClick={likeButton}
+                    color="secondary"
+                  >
+                    {posts.like ? (
+                      <Favorite></Favorite>
+                    ) : (
+                      <FavoriteBorder></FavoriteBorder>
+                    )}
+                  </Button>
                 </li>
               ))}
             </ul>
