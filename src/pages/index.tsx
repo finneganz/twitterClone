@@ -57,7 +57,7 @@ const TopPage:NextPage<Props> = (props) => {
         };
         newTweets.data.filter(function(item, index) {
             if (item.id == likeTweetNum) {
-                item.like = true;
+                item.like = item.like ? false : true;
             }
         });
         localStorage.setItem("tweets", JSON.stringify(newTweets));
