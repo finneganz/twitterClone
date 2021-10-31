@@ -13,15 +13,15 @@ interface Props {
 const TopPage: NextPage<Props> = props => {
   const [tweets, setTweet] = useState<Tweets | undefined>(readTweets());
   const [tweetSentence, setTweetSentence] = useState<string>();
-  useEffect(() => {
-    setTweet(tweets);
-  }, [tweets]);
 
   const setTweetSentenceFunc = (e: any) => {
     setTweetSentence(e.currentTarget.value);
   };
 
   const tweetButton = () => {
+    console.log(tweetSentence);
+    if (typeof tweetSentence === "undefined" || tweetSentence === "")
+      return false;
     let lastNum = 1;
     if (typeof tweets != "undefined") {
       lastNum = tweets.data.slice(-1)[0].id + 1;
