@@ -99,9 +99,6 @@ const TopPage: NextPage<Props> = props => {
         ) : (
           <div className="tweets">
             <ul style={{ listStyle: "none" }}>
-              <li className="tweetHeader">
-                <p className="tweetSentence">ツイート内容</p>
-              </li>
               {tweets.data.map((posts, index) => (
                 <li className="tweetSentence" key={index}>
                   {posts.id}: {posts.sentence}
